@@ -62,3 +62,25 @@ def make_mask(original_image, wide, ):
     img_filename= os.path.join(new_directory, filename + '.png')
     img.save(img_filename)
 
+def logo1(original_image, logo, logo_size = .3):
+    logo = PIL.Image.open(logo)
+    original_image = PIL.Image.open(original_image)
+    width, height = original_image.size
+    position = int(logo_size * min(width, height)) 
+    
+    rlogo = logo.resize((position, position)) 
+    
+    directory = os.getcwd()
+    
+    new_directory = os.path.join(directory, 'Seom Seong-ji') 
+    try:
+        os.mkdir(new_directory)
+    except OSError:
+        pass
+    
+    result= original_image.copy()
+    result= result.paste(rlogo, (0,0), rlogo) 
+    img_filename= os.path.join(new_directory, "itDoesn'tMatterCole.png")
+    result.save(img_filename)
+    
+    
